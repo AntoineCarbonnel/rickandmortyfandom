@@ -1,50 +1,55 @@
 <template>
   <nav>
-    <span>
-      <NuxtLink to="/">
-        <img src="/img/rickandmortyheader.png" alt="logo">
-      </NuxtLink>
-    </span>
-    <span>
-      <NuxtLink to="/characters">Character</NuxtLink>
-    </span>
-    <span>
-      <NuxtLink to="/episodes">Episode</NuxtLink>
-    </span>
-    <span>
-      <NuxtLink to="/locations">Location</NuxtLink>
-    </span>
+    <NuxtLink to="/">
+      <img src="/img/rickandmortyheader.png" alt="logo">
+    </NuxtLink>
+    <NuxtLink v-for="link in links" :key="link.name" :to="'/' + link.route"
+              :class="$route.name === link.route ? 'selected' : ''">
+      {{ link.name }}
+    </NuxtLink>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "Navigation"
+  name: "Navigation",
+  data() {
+    return {
+      links: []
+    }
+  },
+  created() {
+    this.links = this.$store.getters.getLinks
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 nav {
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 10vw;
   min-height: 100vh;
 
-  > span {
+  > a {
     width: 100%;
     padding: 5vh 2vw;
     transition: .5s;
 
     &:hover {
-      cursor: pointer;
       background-color: #FAFAFA;
     }
 
-    &:first-child{
+    &:first-child {
       width: unset;
     }
 
+  }
+
+  a.selected {
+    background-color: #FAFAFA;
   }
 
   img {

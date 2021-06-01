@@ -12,7 +12,6 @@ export default {}
 
 <style scoped>
 #index {
-  background-color: #FAFAFA;
   min-height: 100vh;
   flex-grow: 4;
 }
