@@ -39,6 +39,9 @@ export default {
     justify-content: space-evenly;
     align-items: center;
 
+    h1 {
+      text-transform: capitalize;
+    }
   }
 }
 

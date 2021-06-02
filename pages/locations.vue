@@ -1,34 +1,42 @@
 <template>
-  <div class="container">
-    <div id="header">
-      <h1>
-        Find All The Locations
-      </h1>
-      <input v-model="search"  placeholder="Search a specific location" type="search">
-    </div>
+  <div id="episode" class="grow-4">
+    <Header title="location" @search="passSearch"/>
+    <List :search="search" :infoList="info" :accessor="accessor" :data="data"/>
   </div>
 </template>
 
 <script>
 export default {
   name: "locations",
-  data(){
-    return{
+  data() {
+    return {
       search: "",
-      info: [],
-      locations: []
+      info: {
+        columnLeft: "Name",
+        columnCenter: "Dimension",
+        columnRight: "Type"
+      },
+      accessor:{
+        columnLeft: "name",
+        columnCenter: "dimension",
+        columnRight: "type"
+      }
     }
   },
-  computed:{
-
+  methods: {
+    passSearch(search) {
+      this.search = search
+    }
+  },
+  computed: {
+    data: function () {
+      return this.$store.getters.getDataApi('location')
+    }
   },
   created(){
     this.$store.dispatch('loadFromApi', {
       type: "location"
     })
-    const data = this.$store.getters.getDataApi('location')
-    this.info = data.info
-    this.characters = data.results
   }
 }
 </script>

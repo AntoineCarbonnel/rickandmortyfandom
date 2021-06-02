@@ -1,7 +1,7 @@
 <template>
-  <div class="grow-4">
+  <div id="episode" class="grow-4">
     <Header title="episode" @search="passSearch"/>
-    <List />
+    <List :search="search" :infoList="info" :accessor="accessor" :data="data"/>
   </div>
 </template>
 
@@ -11,7 +11,16 @@ export default {
   data() {
     return {
       search: "",
-      data: []
+      info: {
+        columnLeft: "Name",
+        columnCenter: "Episode",
+        columnRight: "Date de diffusion"
+      },
+      accessor: {
+        columnLeft: "name",
+        columnCenter: "episode",
+        columnRight: "air_date"
+      }
     }
   },
   methods: {
@@ -19,16 +28,22 @@ export default {
       this.search = search
     }
   },
-  computed: {},
+  computed: {
+    data: function () {
+      return this.$store.getters.getDataApi('episode')
+    }
+  },
   created() {
     this.$store.dispatch('loadFromApi', {
       type: "episode"
     })
-    this.data = this.$store.getters.getDataApi('episode')
   }
 }
 </script>
 
 <style scoped>
-
+#episode {
+  display: flex;
+  flex-direction: column;
+}
 </style>

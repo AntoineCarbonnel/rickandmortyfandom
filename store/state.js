@@ -2,15 +2,18 @@ export default () => ({
   links: [
     {
       name: "Characters",
-      route: "characters"
+      route: "characters",
+      img: "/img/character.png"
     },
     {
       name: "Episodes",
-      route: "episodes"
+      route: "episodes",
+      img: "/img/episode.jpg"
     },
     {
       name: "Locations",
-      route: "locations"
+      route: "locations",
+      img: "/img/location.png"
     },
   ],
   character: [],
