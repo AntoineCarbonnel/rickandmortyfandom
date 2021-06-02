@@ -1,34 +1,30 @@
 <template>
-  <div class="container">
-    <div id="header">
-      <h1>
-        Find All The Episodes
-      </h1>
-      <input v-model="search"  placeholder="Search a specific Episode" type="search">
-    </div>
+  <div class="grow-4">
+    <Header title="episode" @search="passSearch"/>
+    <List />
   </div>
 </template>
 
 <script>
 export default {
   name: "episodes",
-  data(){
-    return{
+  data() {
+    return {
       search: "",
-      info: [],
-      episodes: []
+      data: []
     }
   },
-  computed:{
-
+  methods: {
+    passSearch(search) {
+      this.search = search
+    }
   },
-  created(){
+  computed: {},
+  created() {
     this.$store.dispatch('loadFromApi', {
       type: "episode"
     })
-    const data = this.$store.getters.getDataApi('episode')
-    this.info = data.info
-    this.characters = data.results
+    this.data = this.$store.getters.getDataApi('episode')
   }
 }
 </script>

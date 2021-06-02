@@ -35,7 +35,7 @@ nav {
 
   > a {
     width: 100%;
-    padding: 5vh 2vw;
+    padding: 5vh 1vw;
     transition: .5s;
 
     &:hover {
@@ -53,7 +53,7 @@ nav {
   }
 
   img {
-    max-width: 9vw;
+    max-width: 8vw;
   }
 
 }

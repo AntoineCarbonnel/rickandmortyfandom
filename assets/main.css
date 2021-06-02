@@ -76,6 +76,10 @@ a {
 }
 
 .container {
-    width: 1600px;
+    max-width: 1600px;
     margin: 0 auto;
+}
+
+.grow-4 {
+    flex-grow: 4;
 }
